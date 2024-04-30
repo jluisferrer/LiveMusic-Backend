@@ -19,7 +19,6 @@ class AuthController extends Controller
             Log::info(0);
             $user->password = bcrypt($request->input('password'));
 
-            // Log::info('Registering user');
             $validator = Validator::make($request->all(), [
                 "name" => "required|String",
                 "email" => "required|unique:users",
@@ -51,7 +50,6 @@ class AuthController extends Controller
                 [
                     'success' => false,
                     'message' => "User cant be created",
-                    // 'error' => $th->getMessage() 
                 ],
                 500
             );
@@ -119,7 +117,6 @@ class AuthController extends Controller
                 [
                     'success' => false,
                     'message' => "User cant be logged",
-                    // 'error' => $th->getMessage() 
                 ],
                 500
             );
