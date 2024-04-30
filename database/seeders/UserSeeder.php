@@ -15,6 +15,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory()->admin()->create();
-        \App\Models\User::factory(19)->create();
+        \App\Models\User::factory(39)->create();
     }
 }
