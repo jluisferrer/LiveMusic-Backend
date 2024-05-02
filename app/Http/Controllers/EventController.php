@@ -37,4 +37,22 @@ class EventController extends Controller
             ], 500);
         }
     }
+    public function getAllEvents()
+    {
+        try {
+            $events = Event::all();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Events retrieved successfully',
+                'data' => $events
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Events cant be retrieved',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
