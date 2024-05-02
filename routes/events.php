@@ -7,3 +7,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/events', [EventController::class, 'createEvent'])->middleware('auth:sanctum', 'super_admin');
 Route::get('/events', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');
+Route::put('/events/{id}', [EventController::class, 'updateEvent'])->middleware('auth:sanctum', 'super_admin');

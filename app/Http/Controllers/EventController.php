@@ -55,4 +55,40 @@ class EventController extends Controller
             ], 500);
         }
     }
+    public function updateEvent(Request $request, $id)
+    {
+        try {
+            $event = Event::find($id);
+            if (!$event) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Event not found'
+                ], 404);
+            }
+            $request->validate([
+                'eventName' => 'required',
+                'eventDate' => 'required|date',
+                'location' => 'required',
+                'eventImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+            $event->eventName = $request->eventName;
+            $event->eventDate = $request->eventDate;
+            $event->location = $request->location;
+            $event->eventImage = $request->eventImage ?? null;
+
+            $event->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Event updated successfully',
+                'data' => $event
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Event cant be updated',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
