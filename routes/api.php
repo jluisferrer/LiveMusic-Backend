@@ -21,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // ROUTES
 
 require __DIR__ . '/users.php';
+require __DIR__ . '/groups.php';
 require __DIR__ . '/events.php';
 require __DIR__ . '/auth.php';
