@@ -55,6 +55,31 @@ class EventController extends Controller
             ], 500);
         }
     }
+
+    public function getEventById($id)
+    {
+        try {
+            $event = Event::find($id);
+            if (!$event) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Event not found'
+                ], 404);
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Event retrieved successfully',
+                'data' => $event
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Event cant be retrieved',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+
     public function updateEvent(Request $request, $id)
     {
         try {
@@ -87,6 +112,31 @@ class EventController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Event cant be updated',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+    
+    public function DeleteEvent($id)
+    {
+        try {
+            $event = Event::find($id);
+            if (!$event) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Event not found'
+                ], 404);
+            }
+            $event->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Event deleted successfully'
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Event cant be deleted',
                 'error' => $th->getMessage()
             ], 500);
         }
