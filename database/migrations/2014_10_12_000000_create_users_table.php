@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->enum('role', ['super_admin', 'user', 'group'])->default('user', 'group');
+            $table->enum('role', ['super_admin', 'user', 'group']);
             $table->string('name');
-            $table->string('profileImage');
+            $table->string('profileImage')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

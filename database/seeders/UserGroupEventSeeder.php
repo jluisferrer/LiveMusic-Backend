@@ -21,8 +21,8 @@ class UserGroupEventSeeder extends Seeder
         for ($i = 0; $i < 40; $i++) {
             DB::table('usergroupevent')->insert([
                 'user_id' => DB::table('users')->inRandomOrder()->first()->id,
-                'group_id' => DB::table('group')->inRandomOrder()->first()->id,
-                'event_id' => DB::table('event')->inRandomOrder()->first()->id,
+                'group_id' => DB::table('groups')->inRandomOrder()->first()->id,
+                'event_id' => DB::table('events')->inRandomOrder()->first()->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
