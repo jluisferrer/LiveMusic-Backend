@@ -14,7 +14,7 @@ class EventSeeder extends Seeder
         $faker = Faker::create();
 
         for ($i = 0; $i < 15; $i++) {
-            DB::table('event')->insert([
+            DB::table('events')->insert([
                 'eventName' => $faker->sentence,
                 'eventDate' => $faker->date,
                 'location' => $faker->city,

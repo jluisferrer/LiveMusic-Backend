@@ -19,7 +19,7 @@ class GroupSeeder extends Seeder
         $faker = Faker::create();
 
         for ($i = 0; $i < 20; $i++) {
-            DB::table('group')->insert([
+            DB::table('groups')->insert([
                 'groupName' => $faker->name,               
                 'groupImage' => $faker->imageUrl(640, 480, 'events'),
                 'created_at' => now(),
