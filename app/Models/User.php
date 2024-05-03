@@ -37,6 +37,15 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'usergroupevent');
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'usergroupevent');
+    }
     /**
      * The attributes that should be cast.
      *
@@ -45,7 +54,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-     /**
+    /**
      * The "booted" method of the model.
      *
      * @return void

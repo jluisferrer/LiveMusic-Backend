@@ -14,4 +14,14 @@ class Group extends Model
         'groupDescription',
         'groupImage',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'usergroupevent');
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'usergroupevent');
+    }
 }
