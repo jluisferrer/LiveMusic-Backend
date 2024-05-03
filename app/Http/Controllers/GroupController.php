@@ -13,7 +13,7 @@ class GroupController extends Controller
             $request->validate([
                 'groupName' => 'required',
                 'groupDescription' => 'required',
-                'groupImage'=>'nullable|url',
+                'groupImage' => 'nullable|url',
             ]);
             $group = new Group();
             $group->groupName = $request->groupName;
@@ -36,7 +36,7 @@ class GroupController extends Controller
         }
     }
 
-    public function getAllGroups ()
+    public function getAllGroups()
     {
         try {
             $groups = Group::all();
@@ -55,7 +55,7 @@ class GroupController extends Controller
         }
     }
 
-    public function getGroupById ($id)
+    public function getGroupById($id)
     {
         try {
             $group = Group::find($id);
@@ -76,6 +76,71 @@ class GroupController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Group cant be retrieved',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function updateGroup(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'groupName' => 'required',
+                'groupDescription' => 'required',
+                'groupImage' => 'nullable|url',
+            ]);
+
+            $group = Group::find($id);
+
+            if ($group) {
+                $group->groupName = $request->groupName;
+                $group->groupDescription = $request->groupDescription;
+                $group->groupImage = $request->groupImage ?? null;
+
+                $group->save();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Group updated successfully',
+                    'data' => $group
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Group not found',
+                ], 404);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Group cant be updated',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteGroup($id)
+    {
+        try {
+            $group = Group::find($id);
+
+            if ($group) {
+                $group->delete();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Group deleted successfully',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Group not found',
+                ], 404);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Group cant be deleted',
                 'error' => $th->getMessage()
             ], 500);
         }
