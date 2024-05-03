@@ -35,4 +35,49 @@ class GroupController extends Controller
             ], 500);
         }
     }
+
+    public function getAllGroups ()
+    {
+        try {
+            $groups = Group::all();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Groups retrieved successfully',
+                'data' => $groups
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Groups cant be retrieved',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getGroupById ($id)
+    {
+        try {
+            $group = Group::find($id);
+
+            if ($group) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Group retrieved successfully',
+                    'data' => $group
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Group not found',
+                ], 404);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Group cant be retrieved',
+                'error' => $th->getMessage()
+            ], 500);
+        }
+    }
 }
