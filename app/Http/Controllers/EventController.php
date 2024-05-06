@@ -40,7 +40,7 @@ class EventController extends Controller
     public function getAllEvents()
     {
         try {
-            $events = Event::all();
+            $events = Event::with('groups')->get();
 
             return response()->json([
                 'success' => true,

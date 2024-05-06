@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Group;
 use App\Models\User;
+use App\Models\UserGroupEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -67,14 +68,14 @@ class UserGroupEventController extends Controller
                 ], 404);
             }
 
-            DB::table('usergroupevent')->insert([
+            UserGroupEvent::create([
                 'user_id' => $user->id,
                 'event_id' => $event->id,
             ]);
-
             return response()->json([
                 'success' => true,
                 'message' => 'User joined event successfully',
+                'event' => $event,
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -97,7 +98,7 @@ class UserGroupEventController extends Controller
                 ], 404);
             }
 
-            $events = $user->events;
+            $events = $user->events()->with('groups')->get();
 
             return response()->json([
                 'success' => true,
@@ -132,8 +133,8 @@ class UserGroupEventController extends Controller
 
             // Para cada usuario del grupo, crear una nueva entrada en la tabla usergroupevent
             foreach ($users as $user) {
-                DB::table('usergroupevent')->insert([
-                    'user_id' => $user->id,
+                UserGroupEvent::create([
+                    // 'user_id' => $user->id,
                     'group_id' => $group->id,
                     'event_id' => $event->id,
                 ]);
@@ -142,7 +143,9 @@ class UserGroupEventController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Group and all its users joined the event successfully',
+                'event' => $event,
             ], 200);
+                
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,

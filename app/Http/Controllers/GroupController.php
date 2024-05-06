@@ -39,7 +39,7 @@ class GroupController extends Controller
     public function getAllGroups()
     {
         try {
-            $groups = Group::all();
+            $groups = Group::with('users', 'events')->get();
 
             return response()->json([
                 'success' => true,
