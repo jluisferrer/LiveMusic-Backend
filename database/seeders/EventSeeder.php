@@ -16,7 +16,7 @@ class EventSeeder extends Seeder
         for ($i = 0; $i < 15; $i++) {
             DB::table('events')->insert([
                 'eventName' => $faker->sentence,
-                'eventDate' => $faker->date,
+                'eventDate' => $faker->dateTimeBetween('now', '+2 years')->format('Y-m-d'),
                 'location' => $faker->city,
                 'eventImage' => $faker->imageUrl(640, 480, 'events'),
                 'created_at' => now(),

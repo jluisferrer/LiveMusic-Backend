@@ -110,6 +110,37 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function UserAdminUpdate(Request $request, $id)
+    {
+        try {
+            // Buscar el usuario por su ID
+            $user = User::findOrFail($id);
+
+        $user->name = $request->input('name', $user->name);
+        $user->email = $request->input('email', $user->email);
+        $user->role = $request->input('role', $user->role);
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User updated successfully',
+            'data' => $user
+        ], 200);
+    } catch (\Throwable $th) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Could not update user',
+            'error' => $th->getMessage()
+        ], 500);
+    }
+}
+
+
     public function addToGroup(Request $request)
     {
         try {
