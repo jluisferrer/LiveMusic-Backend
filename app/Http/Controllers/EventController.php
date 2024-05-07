@@ -12,7 +12,7 @@ class EventController extends Controller
         try {
             $request->validate([
                 'eventName' => 'required',
-                'eventDate' => 'required|date',
+                'eventDate' => 'required|date|after_or_equal:today',
                 'location' => 'required',
                 'eventImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
@@ -40,7 +40,7 @@ class EventController extends Controller
     public function getAllEvents()
     {
         try {
-            $events = Event::all();
+            $events = Event::with('groups')->get();
 
             return response()->json([
                 'success' => true,
