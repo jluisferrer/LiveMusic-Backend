@@ -10,5 +10,5 @@ Route::post('/usergroupevents/{eventId}', [UserGroupEventController::class, 'joi
 Route::post('/usergroupevents/{groupId}/{eventId}', [UserGroupEventController::class, 'joinGroupEvent'])->middleware('auth:sanctum');
 Route::get('/usergroupevents/', [UserGroupEventController::class, 'getUserEvents'])->middleware('auth:sanctum');
 Route::get('/usergroupevents/{groupId}', [UserGroupEventController::class, 'getGroupEvents'])->middleware('auth:sanctum');
-Route::delete('/usergroupevents/{userId}/{eventId}', [UserGroupEventController::class, 'deleteUserEvent'])->middleware('auth:sanctum');
+Route::delete('/usergroupevents/{eventId}', [UserGroupEventController::class, 'deleteUserEvent'])->middleware('auth:sanctum');
 Route::delete('/usergroupevents/{groupId}/{eventId}', [UserGroupEventController::class, 'deleteGroupEvent'])->middleware('auth:sanctum');

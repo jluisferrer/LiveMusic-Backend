@@ -127,7 +127,6 @@ class UserController extends Controller
             DB::table('usergroupevent')->insert([
                 'user_id' => $user->id,
                 'group_id' => $group->id,
-                // Puedes agregar un 'event_id' aquí si es necesario
             ]);
 
             return response()->json([

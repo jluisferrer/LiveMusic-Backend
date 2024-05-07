@@ -120,17 +120,26 @@ class UserGroupEventController extends Controller
             // Buscar el grupo y el evento por sus IDs
             $group = Group::findOrFail($groupId);
             $event = Event::findOrFail($eventId);
-
+    
             if (!$group || !$event) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Group or event not found',
                 ], 404);
             }
-
+    
+            // Comprobar si el grupo ya está añadido al evento
+            $existingEntry = UserGroupEvent::where('group_id', $groupId)->where('event_id', $eventId)->first();
+            if ($existingEntry) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Group is already added to the event',
+                ], 409);
+            }
+    
             // Obtener todos los usuarios del grupo
             $users = $group->users;
-
+    
             // Para cada usuario del grupo, crear una nueva entrada en la tabla usergroupevent
             foreach ($users as $user) {
                 UserGroupEvent::create([
@@ -139,7 +148,7 @@ class UserGroupEventController extends Controller
                     'event_id' => $event->id,
                 ]);
             }
-
+    
             return response()->json([
                 'success' => true,
                 'message' => 'Group and all its users joined the event successfully',
@@ -154,6 +163,7 @@ class UserGroupEventController extends Controller
             ], 500);
         }
     }
+    
 
     public function getGroupEvents($groupId)
     {
@@ -182,10 +192,10 @@ class UserGroupEventController extends Controller
             ], 500);
         }
     }
-    public function deleteUserEvent($userId, $eventId)
+    public function deleteUserEvent(Request $request, $eventId)
     {
         try {
-            $user = User::findOrfail($userId);
+            $user = $request->user();
             $event = Event::findOrfail($eventId);
 
             if (!$user || !$event) {
