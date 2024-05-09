@@ -59,7 +59,7 @@ class EventController extends Controller
     public function getEventById($id)
     {
         try {
-            $event = Event::find($id);
+            $event = Event::with('groups')->get();
             if (!$event) {
                 return response()->json([
                     'success' => false,

@@ -137,32 +137,27 @@ class UserGroupEventController extends Controller
                 ], 409);
             }
     
-            // Obtener todos los usuarios del grupo
-            $users = $group->users;
-    
-            // Para cada usuario del grupo, crear una nueva entrada en la tabla usergroupevent
-            foreach ($users as $user) {
-                UserGroupEvent::create([
-                    // 'user_id' => $user->id,
-                    'group_id' => $group->id,
-                    'event_id' => $event->id,
-                ]);
-            }
+            // Añadir el grupo al evento
+            UserGroupEvent::create([
+                'group_id' => $group->id,
+                'event_id' => $event->id,
+            ]);
     
             return response()->json([
                 'success' => true,
-                'message' => 'Group and all its users joined the event successfully',
+                'message' => 'Group joined the event successfully',
                 'event' => $event,
             ], 200);
                 
         } catch (\Throwable $th) {
             return response()->json([
                 'success' => false,
-                'message' => 'Could not add group and its users to event',
+                'message' => 'Could not add group to event',
                 'error' => $th->getMessage()
             ], 500);
         }
     }
+    
     
 
     public function getGroupEvents($groupId)
