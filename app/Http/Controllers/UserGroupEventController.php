@@ -128,7 +128,7 @@ class UserGroupEventController extends Controller
                 ], 404);
             }
     
-            // Comprobar si el grupo ya está añadido al evento
+            // Comprobar si el grupo ya está añadido al eventoooo
             $existingEntry = UserGroupEvent::where('group_id', $groupId)->where('event_id', $eventId)->first();
             if ($existingEntry) {
                 return response()->json([
