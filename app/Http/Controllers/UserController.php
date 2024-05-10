@@ -12,15 +12,16 @@ use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-    public function getAllUsers()
+    public function getAllUsers(Request $request)
     {
         try {
-            $users = User::all();
-
+            $page = $request->query('page', 1);
+            $users = User::paginate(10, ['*'], 'page', $page);
+    
             return response()->json(
                 [
                     'success' => true,
-                    'message' => "Users retrieved succesfully",
+                    'message' => "Users retrieved successfully",
                     'data' => $users
                 ],
                 200
@@ -29,7 +30,7 @@ class UserController extends Controller
             return response()->json(
                 [
                     'success' => false,
-                    'message' => "Users cant be retrieved",
+                    'message' => "Users cannot be retrieved",
                     'error' => $th->getMessage()
                 ],
                 500
