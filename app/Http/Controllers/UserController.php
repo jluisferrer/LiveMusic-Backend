@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-    public function getAllUsers()
+    public function getAllUsers(Request $request)
     {
         try {
-            $users = User::all();
+            $page = $request->query('page', 1);
+            $users = User::paginate(10, ['*'], 'page', $page);
 
             return response()->json(
                 [
