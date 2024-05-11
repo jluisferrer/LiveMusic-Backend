@@ -13,9 +13,11 @@ class EventSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        $eventNames = ['Coachella', 'Glastonbury', 'Burning Man', 'Lollapalooza', 'Tomorrowland', 'Bonnaroo', 'Sziget Festival', 'Rock in Rio', 'Reading and Leeds Festivals', 'Ultra Music Festival', 'Electric Daisy Carnival', 'Primavera Sound', 'Mawazine', 'Fuji Rock Festival', 'Summer Sonic'];
+
         for ($i = 0; $i < 15; $i++) {
             DB::table('events')->insert([
-                'eventName' => $faker->sentence,
+                'eventName' => $eventNames[$i],
                 'eventDate' => $faker->dateTimeBetween('now', '+2 years')->format('Y-m-d'),
                 'location' => $faker->city,
                 'eventImage' => $faker->imageUrl(640, 480, 'events'),

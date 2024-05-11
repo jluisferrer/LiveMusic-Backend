@@ -17,11 +17,11 @@ class UserController extends Controller
         try {
             $page = $request->query('page', 1);
             $users = User::paginate(10, ['*'], 'page', $page);
-    
+
             return response()->json(
                 [
                     'success' => true,
-                    'message' => "Users retrieved successfully",
+                    'message' => "Users retrieved succesfully",
                     'data' => $users
                 ],
                 200
@@ -30,7 +30,7 @@ class UserController extends Controller
             return response()->json(
                 [
                     'success' => false,
-                    'message' => "Users cannot be retrieved",
+                    'message' => "Users cant be retrieved",
                     'error' => $th->getMessage()
                 ],
                 500
