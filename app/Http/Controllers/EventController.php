@@ -94,11 +94,13 @@ class EventController extends Controller
             }
             $request->validate([
                 'eventName' => 'required',
+                'eventDescription' => 'nullable',
                 'eventDate' => 'required|date',
                 'location' => 'required',
                 'eventImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
             $event->eventName = $request->eventName;
+            $event->eventDescription = $request->eventDescription;
             $event->eventDate = $request->eventDate;
             $event->location = $request->location;
             $event->eventImage = $request->eventImage ?? null;
