@@ -103,6 +103,7 @@ class UserGroupEventController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'User events retrieved successfully',
+                'user' => $user->name,
                 'data' => $events
             ], 200);
         } catch (\Throwable $th) {
@@ -177,6 +178,7 @@ class UserGroupEventController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Group events retrieved successfully',
+                'group' => $group->groupName,
                 'data' => $events
             ], 200);
         } catch (\Throwable $th) {
