@@ -16,7 +16,8 @@
 
 ## Description :classical_building:
 
-Hola!! aquí está la presentación de la parte de Backend del proyecto Live Music, un lugar donde estar informad@ de las últimas novedades en festivales con tus grupos favoritos y reservar rápidamente tus entradas con la mayor comodidad.
+Hola!! aquí está la presentación de la parte de Backend del proyecto Live Music, un lugar donde estar informad@ de las últimas novedades en festivales con tus grupos favoritos y reservar rápidamente tus entradas con la mayor comodidad. También incluye un apartado de gestión de usuarios y eventos reservado para Administradores.
+
 ---
 
 ## Stack :gear:
@@ -32,7 +33,7 @@ Hola!! aquí está la presentación de la parte de Backend del proyecto Live Mus
 ---
 
 ## Project :open_book:
-
+- Conexion con Frontend: https://github.com/jluisferrer/LiveMusic-Frontend
 
 ![Diagrama](https://github.com/jluisferrer/LiveMusic-Backend/assets/157707370/24f2d212-61d9-41d3-bef6-2d1f3a51cba0)
 
@@ -41,7 +42,7 @@ Hola!! aquí está la presentación de la parte de Backend del proyecto Live Mus
 
 - Clonar repositorio.
 
-- ```bash
+```bash
   git clone https://github.com/jluisferrer/LiveMusic-Backend/
 ```
 - Install all the dependencies on the project
@@ -307,10 +308,13 @@ localhost:8000/api/usergroupevents/{eventid}
 
 ## Author :wave:
 
+**JOSE LUIS FERRER**
 
 
-  ||<img src="https://github.com/jluisferrer.png" width="60px;"/>|
-  |<a href="https://github.com/jluisferrer">Jose Ferrer</a>|
+<a href="https://linkedin.com/in/jose-luis-ferrer-martinez/" target="blank"><img align="left" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+
+<a href="https://github.com/jluisferrer/" target="blank"><img align="left" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="jose-luis-ferrer-martinez/"/></a>
+
 
 ---
 
