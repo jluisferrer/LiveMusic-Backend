@@ -10,7 +10,7 @@
 1. [Description :classical_building:](#description-classical_building)
 2. [Stack :gear:](#stack-gear)
 3. [Project :open_book:](#Project-open_book)
-4. [Author :wave:](#authors-wave)
+4. [Author :wave:](#author-wave)
 
 ---
 
