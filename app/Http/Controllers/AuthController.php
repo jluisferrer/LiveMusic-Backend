@@ -80,7 +80,7 @@ class AuthController extends Controller
                 return response()->json(
                     [
                         'success' => true,
-                        'message' => "User logged succesfully",
+                        'message' => "User cant be logged",
                         'data' => $user
                     ],
                     400
@@ -92,7 +92,7 @@ class AuthController extends Controller
                 return response()->json(
                     [
                         "success" => false,
-                        "message" => "Email or password not valid 2",
+                        "message" => "Email or password not valid",
                         // "error" => $th->getMessage()
                     ],
                     400

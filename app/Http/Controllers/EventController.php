@@ -12,12 +12,14 @@ class EventController extends Controller
         try {
             $request->validate([
                 'eventName' => 'required',
+                'eventDescription' => 'required',
                 'eventDate' => 'required|date|after_or_equal:today',
-                'location' => 'required',
+                'location' => 'nullable',
                 'eventImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
             $event = new Event();
             $event->eventName = $request->eventName;
+            $event->eventDescription = $request->eventDescription;
             $event->eventDate = $request->eventDate;
             $event->location = $request->location;
             $event->eventImage = $request->eventImage ?? null;

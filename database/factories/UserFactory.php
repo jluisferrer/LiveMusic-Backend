@@ -33,7 +33,19 @@ class UserFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'role' => 'super_admin',
-                'password'=>bcrypt('admin1234'), //super_admin
+                'email' => 'super@admin.com',
+                'password'=>bcrypt('admin1234'), 
+            ];
+        });
+    }
+
+    public function userTest()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role' => 'user',
+                'email' => 'user@user.com', 
+                'password'=>bcrypt('123456'), 
             ];
         });
     }
