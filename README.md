@@ -16,7 +16,7 @@
 
 ## Description :classical_building:
 
-Hola!! aquí está la presentación de la parte de Backend del proyecto Live Music, un lugar donde estar informad@ de las últimas novedades en festivales con tus grupos favoritos y reservar entradas para esos con la mayor comodidad  y rapidez.
+Hola!! aquí está la presentación de la parte de Backend del proyecto Live Music, un lugar donde estar informad@ de las últimas novedades en festivales con tus grupos favoritos y reservar rápidamente tus entradas con la mayor comodidad.
 ---
 
 ## Stack :gear:
